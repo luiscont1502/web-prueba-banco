@@ -1,0 +1,28 @@
+<div class="min-h-screen flex align-items-center justify-content-center p-4">
+  <p-card header="Banco Internacional" subheader="Ingreso al sistema de reclamos" styleClass="w-full md:w-30rem">
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-column gap-4 mt-3">
+      @if (successMsg()) {
+      <p-message severity="success" [text]="successMsg()"></p-message>
+      }
+
+      @if (errorMsg()) {
+      <p-message severity="error" [text]="errorMsg()"></p-message>
+      }
+      <p-floatlabel variant="in">
+        <input pInputText id="username" formControlName="username" class="w-full" />
+        <label for="username">Usuario</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="in">
+        <p-password formControlName="password" inputId="password" [feedback]="false" [toggleMask]="true"
+          styleClass="w-full" inputStyleClass="w-full">
+        </p-password>
+        <label for="password">Contraseña</label>
+      </p-floatlabel>
+
+      <button pButton type="submit" label="Ingresar" icon="pi pi-sign-in" class="w-full">
+      </button>
+    </form>
+  </p-card>
+</div>

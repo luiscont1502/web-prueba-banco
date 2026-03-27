@@ -1,0 +1,54 @@
+<div class="min-h-screen flex align-items-center justify-content-center p-3 md:p-4">
+  <div class="w-full max-w-3xl">
+    <p-card header="Registro de Reclamos" subheader="Ingrese la información del cliente y del reclamo"
+      styleClass="w-full">
+
+      <div class="flex flex-column gap-4 mt-3">
+
+        <div class="grid">
+          <div class="col-12 md:col-8">
+            <p-floatlabel variant="in">
+              <input pInputText id="identificacion" class="w-full" [formControl]="form.controls.identificacion" />
+              <label for="identificacion">Identificación</label>
+            </p-floatlabel>
+          </div>
+
+          <div class="col-12 md:col-4">
+            <button pButton type="button" label="Consultar" icon="pi pi-search" class="w-full"
+              [loading]="loadingConsultar()" (click)="consultarCliente()">
+            </button>
+          </div>
+        </div>
+
+        @if (cliente()) {
+        <span class="text-primary font-semibold text-lg">
+          ¡Hola, {{ nombreCompleto() }}! Por favor ingresa el detalle de tu inconformidad.
+        </span>
+        }
+
+        <p-floatlabel variant="in">
+          <p-select inputId="tipoReclamo" class="w-full" [options]="tiposReclamo" optionLabel="label"
+            optionValue="value" [formControl]="form.controls.tipoReclamo">
+          </p-select>
+          <label for="tipoReclamo">Tipo de Reclamo</label>
+        </p-floatlabel>
+
+        <div class="flex flex-column gap-2">
+          <label for="detalleReclamo" class="text-700 font-medium text-base">
+            Detalle Reclamo
+          </label>
+
+          <textarea pTextarea id="detalleReclamo" rows="6" class="w-full" [formControl]="form.controls.detalleReclamo">
+  </textarea>
+        </div>
+
+        <div class="flex justify-content-end">
+          <button pButton type="button" label="Guardar" icon="pi pi-save" [loading]="loadingGuardar()"
+            class="w-full md:w-auto" (click)="guardarReclamo()">
+          </button>
+        </div>
+
+      </div>
+    </p-card>
+  </div>
+</div>
